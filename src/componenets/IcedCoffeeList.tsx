@@ -26,7 +26,7 @@ interface IcedCoffeeData {
     }, []);
     return (
     <>
-        <h1 className="text-3xl font-bold text-center">Our Iced Coffee Collection!</h1>
+        <h1 className="text-3xl font-bold text-center mb-6">Our Iced Coffee Collection!</h1>
         {data ? <ul className='w-full flex justify-center items-center flex-wrap gap-4 list-none'>
         {Object.values(data).map((item, i) => (
             <IcedCoffee
