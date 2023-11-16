@@ -1,8 +1,18 @@
 import { useEffect,useState } from "react";
 import IcedCoffee from "./IcedCoffee";
 import axios from 'axios';
-function IcedCoffeeList() {
-    const [data, setData] = useState(null);
+
+interface IcedCoffeeData {
+    key: number;
+    title: string;
+    ingredients: string[];
+    price: number;
+    size: string;
+    image: string;
+}
+  
+  function IcedCoffeeList() {
+    const [data, setData] = useState<IcedCoffeeData[] | null>(null);
 
     useEffect(() => {
         axios.get('https://icedcoffespotreactapp-default-rtdb.firebaseio.com/icedcoffees.json')

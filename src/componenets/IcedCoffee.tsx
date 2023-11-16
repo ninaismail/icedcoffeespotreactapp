@@ -1,6 +1,13 @@
-import PropTypes from 'prop-types';
 
-const IcedCoffee = ({ id, title, ingredients, price, image, size }) => {
+interface IcedCoffeeProps {
+    id: number;
+    title: string;
+    ingredients: string[];
+    price: number;
+    image: string;
+    size: string; 
+  }
+  const IcedCoffee: React.FC<IcedCoffeeProps> = ({ id, title, ingredients, price, image, size }) => {
     return (
     <li key={id} className="w-64 bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
     <img
@@ -32,13 +39,3 @@ const IcedCoffee = ({ id, title, ingredients, price, image, size }) => {
 };
   
 export default IcedCoffee;
-
-
-IcedCoffee.propTypes = {
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  ingredients: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  size: PropTypes.number.isRequired,
-};
