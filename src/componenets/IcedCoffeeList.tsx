@@ -3,14 +3,16 @@ import IcedCoffee from "./IcedCoffee";
 import axios from 'axios';
 import IcedCoffeeSkeleton from "./IcedCoffeeSkeleton";
 
+
 interface IcedCoffeeData {
-    key: number;
+    id: string;
     title: string;
     ingredients: string[];
     price: number;
-    size: string;
     image: string;
+    size: string;
 }
+
   
   function IcedCoffeeList() {
     const [data, setData] = useState<IcedCoffeeData[] | null>(null);
@@ -33,15 +35,7 @@ interface IcedCoffeeData {
         {isLoading && <IcedCoffeeSkeleton cards={4} />}
         {data && <>
         {Object.values(data).map((item, i) => (
-            <IcedCoffee
-                key={i}
-                id={item.key}
-                title={item.title}
-                ingredients={item.ingredients}
-                price={item.price}
-                size={item.size}
-                image={item.image}
-                />
+          <IcedCoffee key={i} coffee={item} />
         ))}
         </>}
         </ul>

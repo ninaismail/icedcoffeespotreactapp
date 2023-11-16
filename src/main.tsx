@@ -1,10 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.js'
+import ReactDOM from "react-dom";
+import { CartProvider } from "react-use-cart";
+import App from "./App";
 import './index.css'
-
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import CartPage from "./cart";
+ReactDOM.render(
+  <CartProvider><App/><CartPage /></CartProvider>,
+  document.getElementById("root")
+);
