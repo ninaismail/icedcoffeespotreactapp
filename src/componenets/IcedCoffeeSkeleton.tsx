@@ -1,10 +1,10 @@
 import Skeleton from 'react-loading-skeleton';
 import "react-loading-skeleton/dist/skeleton.css";
 
-interface IcedCoffeeSkeletonProps {
+type IcedCoffeeSkeletonProps = {
     cards: number;
   }
-  const IcedCoffeeSkeleton: React.FC<IcedCoffeeSkeletonProps> = ({ cards }) => {
+  const IcedCoffeeSkeleton = ({ cards } : IcedCoffeeSkeletonProps) => {
     return (
     <>
     {Array(cards).fill(0).map((_, i) => (

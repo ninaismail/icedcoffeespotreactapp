@@ -4,7 +4,7 @@ import axios from 'axios';
 import IcedCoffeeSkeleton from "./IcedCoffeeSkeleton";
 
 
-interface IcedCoffeeData {
+type IcedCoffeeData = {
     id: string;
     title: string;
     ingredients: string[];
@@ -13,7 +13,6 @@ interface IcedCoffeeData {
     size: string;
 }
 
-  
   function IcedCoffeeList() {
     const [data, setData] = useState<IcedCoffeeData[] | null>(null);
     const [isLoading, setIsLoading] = useState(true)

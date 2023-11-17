@@ -1,6 +1,6 @@
 import { useCart } from "react-use-cart";
 
-interface IcedCoffeeData {
+type IcedCoffeeData = {
     id: string;
     title: string;
     ingredients: string[];
@@ -9,13 +9,14 @@ interface IcedCoffeeData {
     size: string;
 }
 
-interface IcedCoffeeProps {
+type IcedCoffeeProps = {
     coffee: IcedCoffeeData;
 }
 
-const IcedCoffee: React.FC<IcedCoffeeProps> = ({ coffee }) => {
+const IcedCoffee = ({ coffee } : IcedCoffeeProps) => {
     const { addItem } = useCart();
     console.log("1111",coffee)
+    
     return (
     <li key={coffee.id} className="w-64 bg-white shadow-lg rounded-lg p-4 transition-transform transform hover:scale-105">
     <img
