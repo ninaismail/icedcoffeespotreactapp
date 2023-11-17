@@ -55,7 +55,7 @@ const CartPage = () => {
         <h2 className="text-lg font-bold">Your Total</h2>
         <div className="flex justify-between font-medium text-gray-900">
         <small>Amount:</small>
-        <small>{cartTotal}</small>
+        <small>{cartTotal.toFixed(2)}</small>
         </div>
         <div className="flex justify-between font-medium text-gray-900">
         <small>Delivery:</small>
@@ -63,7 +63,7 @@ const CartPage = () => {
         </div>
         <div className="flex justify-between font-medium text-gray-900">
         <small>Total Price:</small>
-        <small>{cartTotal + 1}</small>
+        <small>{cartTotal.toFixed(2) + 1}</small>
         </div>
         <div className="flex justify-between items-center">
         <p>Pay on delevery.</p>
