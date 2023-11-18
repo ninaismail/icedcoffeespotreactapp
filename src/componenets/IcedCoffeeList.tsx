@@ -12,12 +12,12 @@ type IcedCoffeeData = {
     image: string;
     size: string;
 }
-
+// https://icedcoffespotreactapp-default-rtdb.firebaseio.com/icedcoffees.json
   function IcedCoffeeList() {
     const [data, setData] = useState<IcedCoffeeData[] | null>(null);
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        axios.get('https://icedcoffespotreactapp-default-rtdb.firebaseio.com/icedcoffees.json')
+        axios.get('http://localhost:3000/api/icedcoffees')
         .then(response => {
             console.log("success", response)
             setData(response.data)
