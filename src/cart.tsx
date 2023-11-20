@@ -32,15 +32,15 @@ const CartPage = () => {
               </div>
               <div className="md:w-1/3 w-1/2 flex flex-col items-end">
                   <p className="text-lg font-medium text-gray-900">{item.price}</p>
-                  <div className='md:w-1/5 w-1/3 flex justify-center items-center border border-gray-500'>
+                  <div className='md:w-82 w-1/3 flex justify-center items-center border border-gray-500'>
                     <button className="w-1/3 h-full font-medium bg-orange-500 hover:bg-orange-700 text-white"
-                      onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
+                      onClick={() => updateItemQuantity(item.id, (item.quantity || 0) - 1)}
                     >
                       -
                     </button>
                     <p className="w-1/3 h-full text-center m-auto font-medium">{item.quantity}</p>
                     <button className="w-1/3 h-full font-medium bg-orange-500 hover:bg-orange-700 text-white"
-                      onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
+                      onClick={() => updateItemQuantity(item.id, (item.quantity || 0) + 1)}
                     >
                       +
                     </button>
