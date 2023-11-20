@@ -17,7 +17,7 @@ type IcedCoffeeData = {
     const [data, setData] = useState<IcedCoffeeData[] | null>(null);
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        axios.get('http://localhost:3000/api/icedcoffees')
+        axios.get('http://localhost:3000/api/icedcoffee')
         .then(response => {
             console.log("success", response)
             setData(response.data)
