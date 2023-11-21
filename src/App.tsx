@@ -8,6 +8,9 @@ import IcedCoffeeList from "./componenets/IcedCoffeeList"
 import RootLayout from './layouts/RootLayout';
 import CartPage from './cart';
 import CheckoutPage from './checkout';
+import Profile from './profile';
+import Register from './register';
+import Login from './login';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +19,9 @@ const router = createBrowserRouter(
       <Route index element={<IcedCoffeeList />} />
       <Route path='mycart' element={<CartPage />} />
       <Route path='checkout' element={<CheckoutPage />} />
+      <Route path='login' element={<Login />} />
+      <Route path='register' element={<Register />} />
+      <Route path='profile' element={<Profile />} />
     </Route>
   )
 )

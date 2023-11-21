@@ -1,5 +1,8 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { useCart } from "react-use-cart";
+import LoginButton from "../componenets/LoginButton";
+import LogoutButton from "../componenets/LogoutButton";
+import Profile from "../componenets/Profile";
 
 export default function RootLayout() {
 
@@ -18,6 +21,9 @@ export default function RootLayout() {
           {totalItems}
           </div>
           </NavLink>
+            <LoginButton />
+            <LogoutButton />
+            <Profile />
         </nav>
       </header>
       <main>
