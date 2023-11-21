@@ -89,12 +89,13 @@ function formReducer(formState: FormState, action: any): FormState {
       break;
   }
 
-  for (const field in updatedData) {
-    if (!updatedData[field].isValid === false) {
-      updatedFormValidity = false;
-      break;
-    }
+ // Check if all fields are valid
+ for (const field in updatedData) {
+  if (!updatedData[field].isValid) {
+    updatedFormValidity = false;
+    break;
   }
+}
 
   return {
     data: updatedData,

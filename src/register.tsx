@@ -97,8 +97,9 @@ function formReducer(formState: FormState, action: any): FormState {
       break;
   }
 
+  // Check if all fields are valid
   for (const field in updatedData) {
-    if (!updatedData[field].isValid === false) {
+    if (!updatedData[field].isValid) {
       updatedFormValidity = false;
       break;
     }
@@ -193,7 +194,7 @@ function Register() {
   };
 
   return (
-  <form className="md:w-1/4 w-full p-4 bg-white shadow-md mx-auto" onSubmit={(e)=>handleRegister(e)}>    
+  <form className="md:w-1/3 w-full p-4 bg-white shadow-md mx-auto" onSubmit={(e)=>handleRegister(e)}>    
       <h2 className="text-xl font-bold mb-2">Register</h2>
       <label htmlFor="Name">Name:</label>
       <input 

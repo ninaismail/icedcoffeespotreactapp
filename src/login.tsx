@@ -25,7 +25,6 @@ const ERRORS = {
   isRequired: 'This field is required'
 };
 
-
 function formReducer(formState: FormState, action: any): FormState {
   let updatedData = { ...formState.data };
   let updatedFormValidity = true;
@@ -33,10 +32,11 @@ function formReducer(formState: FormState, action: any): FormState {
   switch (action.type) {
     case ACTIONS.submit:
       for (const field in updatedData) {
-        if (!updatedData[field].isValid === false) {
+        if (!updatedData[field].isValid) {
           if (updatedData[field].ref && updatedData[field].ref.current) {
             updatedData[field].ref.current.focus();
           }
+          updatedFormValidity = false; // Set to false if any field is not valid
           break;
         }
       }
@@ -71,7 +71,7 @@ function formReducer(formState: FormState, action: any): FormState {
                 validationMessage: ERRORS.emailValidation,
               };
             }
-            break;      
+            break;
         }
       }
       break;
@@ -81,8 +81,9 @@ function formReducer(formState: FormState, action: any): FormState {
       break;
   }
 
+  // Check if all fields are valid
   for (const field in updatedData) {
-    if (!updatedData[field].isValid === false) {
+    if (!updatedData[field].isValid) {
       updatedFormValidity = false;
       break;
     }
@@ -93,6 +94,7 @@ function formReducer(formState: FormState, action: any): FormState {
     isValid: updatedFormValidity,
   };
 }
+
 export default function Login() {
   const initialData: FormState = {
   data: {
@@ -155,7 +157,7 @@ export default function Login() {
   }
 
   return (
-    <form className="md:w-1/4 w-full p-4 bg-white shadow-md mx-auto" onSubmit ={(e)=>handleLogin(e)}>
+    <form className="md:w-1/3 w-full p-4 bg-white shadow-md mx-auto" onSubmit ={(e)=>handleLogin(e)}>
       <h2 className="text-xl font-bold mb-2">Login</h2>
       <label htmlFor="email">Email:</label>
       <input 
