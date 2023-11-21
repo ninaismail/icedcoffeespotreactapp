@@ -135,10 +135,12 @@ export default function Login() {
   };
 
   const handleLogin = async (e:any)=>{
+    e.preventDefault();
     dispatch({
       type: ACTIONS.submit
     });
-  
+    console.log("i'm here")
+
     if (formState.isValid === false) {
       //do something
     }
