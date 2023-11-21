@@ -207,6 +207,8 @@ function CheckoutPage() {
     });
   
     if (formState.isValid === false) {
+      //do something
+    }
       const formData = {} as any;
       for (const key in  Object.keys(formState.data)) {
         formData[key] = formState.data[key].value;
@@ -219,8 +221,7 @@ function CheckoutPage() {
           console.log('success', response);
         }).catch((error) => {
           console.log(error);
-        });
-      }
+      });
   };
 
   const clearInputs = (e:any) => {
