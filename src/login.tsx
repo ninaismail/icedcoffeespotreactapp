@@ -136,31 +136,31 @@ export default function Login() {
 
   const handleLogin = async (e:any)=>{
     e.preventDefault();
+    console.log("i'm here")
     dispatch({
       type: ACTIONS.submit
     });
-    console.log("i'm here")
 
     if (formState.isValid === false) {
       //do something
     }
-      const formData = {} as any;
-      for (const key in  Object.keys(formState.data)) {
+      const formData: any = {};
+      for (const key in formState.data) {
         formData[key] = formState.data[key].value;
       }
   
-      console.log(formData);
+      console.log("data to submit",formData);
       const axios = (await import("axios")).default;
       await axios.post('http://localhost:3000/api/auth/login', formData)
         .then(function (response) {
           console.log('success', response);
         }).catch((error) => {
-          console.log(error);
+          console.log('error', error);
       });
   }
 
   return (
-    <form className="md:w-1/3 w-full p-4 bg-white shadow-md mx-auto" onSubmit ={(e)=>handleLogin(e)}>
+    <form className="md:w-1/3 w-full p-4 bg-white shadow-md mx-auto" onSubmit={(e)=>handleLogin(e)}>
       <h2 className="text-xl font-bold mb-2">Login</h2>
       <label htmlFor="email">Email:</label>
       <input 
@@ -191,7 +191,7 @@ export default function Login() {
       />
       {formState.data.password.isValid === false && <p className="mb-2 text-[12px] text-red-500">{formState.data.password.validationMessage}</p>}
       <div className="flex justify-between items-center gap-2 mt-5">
-        <NavLink to="#" className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Sign In</NavLink>
+        <button className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Sign In</button>
         <p>Don't have an account yet? <NavLink to="/register" className="text-[#E97451] hover:brightness-125 text-sm font-bold py-2 px-4 rounded">Register</NavLink></p>
       </div>
     </form>

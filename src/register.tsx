@@ -1,6 +1,4 @@
 import { useRef,useReducer } from 'react'
-import { NavLink } from 'react-router-dom';
-
 type FormState = {
   data: {
     [key: string]: {
@@ -178,8 +176,8 @@ function Register() {
     if (formState.isValid === false) {
       //do something
     }
-      const formData = {} as any;
-      for (const key in  Object.keys(formState.data)) {
+      const formData: any = {};
+      for (const key in  formState.data) {
         formData[key] = formState.data[key].value;
       }
   
@@ -189,7 +187,7 @@ function Register() {
         .then(function (response) {
           console.log('success', response);
         }).catch((error) => {
-          console.log(error);
+          console.log('error', error);
       });
   };
 
@@ -254,7 +252,7 @@ function Register() {
       />  
       {formState.data.phone.isValid === false && <p className="mb-2 text-[12px] text-red-500">{formState.data.phone.validationMessage}</p>}
       <p className='mt-5 mb-2'>Your personal data will be used to support your experience throughout this website, to manage access to your account.</p>
-      <NavLink to="/" className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Sign Up</NavLink>
+      <button className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Sign Up</button>
   </form>
   );
 }
