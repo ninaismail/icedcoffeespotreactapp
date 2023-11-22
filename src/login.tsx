@@ -1,5 +1,6 @@
 import { useRef,useReducer } from 'react'
 import { NavLink } from 'react-router-dom';
+import Cookie from 'cookie-universal';
 type FormState = {
   data: {
     [key: string]: {
@@ -96,6 +97,7 @@ function formReducer(formState: FormState, action: any): FormState {
 }
 
 export default function Login() {
+  const cookie = Cookie();
   const initialData: FormState = {
   data: {
     email: {
@@ -154,6 +156,9 @@ export default function Login() {
       await axios.post('http://localhost:3000/api/auth/login', formData)
         .then(function (response) {
           console.log('success', response);
+          const token = response.data.accessToken;
+          cookie.set('user', token)
+          window.location.pathname = '/'
         }).catch((error) => {
           console.log('error', error);
       });

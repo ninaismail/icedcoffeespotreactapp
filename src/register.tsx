@@ -186,6 +186,7 @@ function Register() {
       await axios.post('http://localhost:3000/api/auth/register', formData)
         .then(function (response) {
           console.log('success', response);
+          window.location.pathname = '/profile'
         }).catch((error) => {
           console.log('error', error);
       });
