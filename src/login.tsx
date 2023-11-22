@@ -156,8 +156,10 @@ export default function Login() {
       await axios.post('http://localhost:3000/api/auth/login', formData)
         .then(function (response) {
           console.log('success', response);
+          const userId = response.data._id;
           const token = response.data.accessToken;
-          cookie.set('user', token)
+          cookie.set('user', userId)
+          cookie.set('token', token)
           window.location.pathname = '/'
         }).catch((error) => {
           console.log('error', error);

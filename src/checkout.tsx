@@ -1,6 +1,6 @@
 import { useCart } from "react-use-cart"
 import { useRef,useReducer } from 'react'
-import { NavLink } from "react-router-dom";
+import Cookie from 'cookie-universal';
 
 type FormState = {
   data: {
@@ -104,6 +104,7 @@ function formReducer(formState: FormState, action: any): FormState {
 }
 
 function CheckoutPage() {
+  const cookie = Cookie();
   const {
     cartTotal,
     items,
@@ -147,28 +148,28 @@ function CheckoutPage() {
       },  
       note: {
         value: "",
-        isValid: null,
+        isValid: true,
         validationMessage: "",
         required: false,
         ref: useRef()
       },
       user_id: {
-        value: "",
-        isValid: null,
+        value: cookie.get('user'),
+        isValid: true,
         validationMessage: "",
         required: true,
         ref: useRef()
       },
       icedcoffees: {
         value: items as any,
-        isValid: null,
+        isValid: true,
         validationMessage: "",
         required: true,
         ref: useRef()
       },
       total_amount: {
         value: cartTotal,
-        isValid: null,
+        isValid: true,
         validationMessage: "",
         required: true,
         ref: useRef()
@@ -216,7 +217,13 @@ function CheckoutPage() {
   
       console.log(formData);
       const axios = (await import("axios")).default;
-      await axios.post('http://localhost:3000/api/order', formData)
+      const token = cookie.get('token')
+      await axios.post('http://localhost:3000/api/order', formData, {
+        // withCredentials: true,
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
         .then(function (response) {
           console.log('success', response);
         }).catch((error) => {
@@ -228,7 +235,7 @@ function CheckoutPage() {
     //
   }
   return (
-  <form className="w-10/12 flex justify-center items-center mx-auto" onSubmit={(e)=>handleSubmit(e)}>    
+  <form className="w-10/12 flex justify-center items-center mx-auto" onSubmit={handleSubmit}>    
     <div className="md:w-2/3 w-full p-4">
         <h2 className="text-xl font-bold mb-2">Personal Info</h2>
         <label htmlFor="name">Name:</label>
@@ -354,7 +361,7 @@ function CheckoutPage() {
         <p>Your personal data will be used to support your experience throughout this website, to manage access to your account.</p>
         <div className="flex justify-end items-center gap-2 mt-5">
           <button className="bg-white hover:brightness-125 text-[#E97451] border border-[#E97451] text-sm font-bold py-2 px-4 rounded" onClick={(e)=>clearInputs(e)}>Cancel</button>
-          <NavLink to="/" className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Place Order</NavLink>
+          <button className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Place Order</button>
         </div>  
       </div>
     </div>
