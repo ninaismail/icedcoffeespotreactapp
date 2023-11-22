@@ -167,7 +167,7 @@ export default function Login() {
   }
 
   return (
-    <form className="md:w-1/3 w-full p-4 bg-white shadow-md mx-auto" onSubmit={(e)=>handleLogin(e)}>
+    <form className="lg:w-1/3 md:w-1/2 w-full p-4 bg-white shadow-md mx-auto" onSubmit={(e)=>handleLogin(e)}>
       <h2 className="text-xl font-bold mb-2">Login</h2>
       <label htmlFor="email">Email:</label>
       <input 
