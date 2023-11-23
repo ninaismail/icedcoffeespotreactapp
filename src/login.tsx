@@ -1,6 +1,6 @@
 import { useRef,useReducer } from 'react'
 import { NavLink } from 'react-router-dom';
-import Cookie from 'cookie-universal';
+import { useLogin } from "./hooks/useLogin"
 type FormState = {
   data: {
     [key: string]: {
@@ -97,7 +97,8 @@ function formReducer(formState: FormState, action: any): FormState {
 }
 
 export default function Login() {
-  const cookie = Cookie();
+  const { signin } = useLogin();
+
   const initialData: FormState = {
   data: {
     email: {
@@ -156,11 +157,8 @@ export default function Login() {
       await axios.post('http://localhost:3000/api/auth/login', formData)
         .then(function (response) {
           console.log('success', response);
-          const userId = response.data._id;
-          const token = response.data.accessToken;
-          cookie.set('user', userId)
-          cookie.set('token', token)
-          window.location.pathname = '/'
+          // update the auth context
+          signin(response.data._id)
         }).catch((error) => {
           console.log('error', error);
       });

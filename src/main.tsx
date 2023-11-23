@@ -2,13 +2,15 @@ import ReactDOM from "react-dom";
 import { CartProvider } from "react-use-cart";
 import App from "./App";
 import './index.css'
-import Cookie from 'cookie-universal';
+import { AuthContextProvider } from "./context/AuthContext";
 
-const cookie = Cookie();
-const userId = cookie.get('user')
+const user = JSON.stringify(localStorage.getItem('user'))
+
 ReactDOM.render(
-  <CartProvider id={userId}>
+  <AuthContextProvider>
+  <CartProvider id={user}>
     <App/>
-  </CartProvider>,
+    </CartProvider>
+  </AuthContextProvider>,
   document.getElementById("root")
 );

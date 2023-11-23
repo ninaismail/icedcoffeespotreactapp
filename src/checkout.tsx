@@ -154,7 +154,7 @@ function CheckoutPage() {
         ref: useRef()
       },
       user_id: {
-        value: cookie.get('user'),
+        value: JSON.stringify(localStorage.getItem('user')),
         isValid: true,
         validationMessage: "",
         required: true,

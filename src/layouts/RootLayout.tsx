@@ -24,9 +24,9 @@ export default function RootLayout() {
           {totalItems}
           </div>
           </NavLink>
-            <LoginButton />
-            <LogoutButton />
-            <Profile />
+          <LoginButton />
+          <LogoutButton />
+          <Profile />
         </nav>
       </header>
       <main>

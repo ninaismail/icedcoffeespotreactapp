@@ -1,4 +1,6 @@
-import { useRef,useReducer } from 'react'
+import { useRef, useReducer } from 'react'
+import { useSignup } from './hooks/useSignUp';
+
 type FormState = {
   data: {
     [key: string]: {
@@ -11,7 +13,6 @@ type FormState = {
   };
   isValid: boolean;
 };
-
 const ACTIONS = {
   clear:"clear",
   submit:"form_submit",
@@ -110,7 +111,8 @@ function formReducer(formState: FormState, action: any): FormState {
 }
 
 function Register() {
-
+  const { signup } = useSignup();
+  
   const initialData : FormState = {
     data: {
       name: {
@@ -146,7 +148,6 @@ function Register() {
   };
   const [formState, dispatch] = useReducer(formReducer, initialData);
   console.log(formState)
-
   const handleInputChange = (e: any) => {
     const regex = /^[a-zA-Z]+$/;
     if(e.target.id==="phone"){
@@ -186,7 +187,8 @@ function Register() {
       await axios.post('http://localhost:3000/api/auth/register', formData)
         .then(function (response) {
           console.log('success', response);
-          window.location.pathname = '/profile'
+          // update the auth context
+          signup(response.data._id)
         }).catch((error) => {
           console.log('error', error);
       });
