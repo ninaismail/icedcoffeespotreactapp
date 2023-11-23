@@ -4,7 +4,7 @@ import App from "./App";
 import './index.css'
 import { AuthContextProvider } from "./context/AuthContext";
 
-const user = JSON.stringify(localStorage.getItem('user'))
+const user = JSON.stringify(localStorage.getItem('user_id'))
 
 ReactDOM.render(
   <AuthContextProvider>

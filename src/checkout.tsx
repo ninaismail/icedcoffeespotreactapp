@@ -1,6 +1,6 @@
 import { useCart } from "react-use-cart"
 import { useRef,useReducer } from 'react'
-import Cookie from 'cookie-universal';
+import { useAuthContext } from "./hooks/useAuthContext"
 
 type FormState = {
   data: {
@@ -104,7 +104,6 @@ function formReducer(formState: FormState, action: any): FormState {
 }
 
 function CheckoutPage() {
-  const cookie = Cookie();
   const {
     cartTotal,
     items,
@@ -154,7 +153,7 @@ function CheckoutPage() {
         ref: useRef()
       },
       user_id: {
-        value: JSON.stringify(localStorage.getItem('user')),
+        value: JSON.stringify(localStorage.getItem('user_id')),
         isValid: true,
         validationMessage: "",
         required: true,
@@ -217,7 +216,7 @@ function CheckoutPage() {
   
       console.log(formData);
       const axios = (await import("axios")).default;
-      const token = cookie.get('token')
+      const token = localStorage.getItem('user')
       await axios.post('http://localhost:3000/api/order', formData, {
         // withCredentials: true,
         headers: {

@@ -188,7 +188,7 @@ function Register() {
         .then(function (response) {
           console.log('success', response);
           // update the auth context
-          signup(response.data._id)
+          signup(response.data._id,response.data.accessToken,response.data.name)
         }).catch((error) => {
           console.log('error', error);
       });
