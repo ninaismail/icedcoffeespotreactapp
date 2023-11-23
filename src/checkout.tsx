@@ -104,6 +104,8 @@ function formReducer(formState: FormState, action: any): FormState {
 }
 
 function CheckoutPage() {
+  const {user} = useAuthContext()
+
   const {
     cartTotal,
     items,
@@ -153,7 +155,7 @@ function CheckoutPage() {
         ref: useRef()
       },
       user_id: {
-        value: JSON.stringify(localStorage.getItem('user_id')),
+        value: user._id,
         isValid: true,
         validationMessage: "",
         required: true,
@@ -216,11 +218,10 @@ function CheckoutPage() {
   
       console.log(formData);
       const axios = (await import("axios")).default;
-      const token = localStorage.getItem('user')
       await axios.post('http://localhost:3000/api/order', formData, {
         // withCredentials: true,
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${user.accessToken}`,
         },
       })
         .then(function (response) {

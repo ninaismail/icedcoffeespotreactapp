@@ -21,14 +21,16 @@ export const authReducer = (state: FormState, action: any) => {
 }
 
 export const AuthContextProvider = ({ children }: AuthWrapperProps) => {
-  const userId = JSON.stringify(localStorage.getItem('user'))
+  const userString = localStorage.getItem('user');
+  const user = userString!== null && JSON.parse(userString);
+  
   const [state, dispatch] = useReducer(authReducer, {
     user: null
   })
 
   useEffect(() => {
-    if (userId !== null) {
-      dispatch({ type: 'LOGIN', payload: userId })
+    if (user) {
+      dispatch({ type: 'LOGIN', payload: user })
     }
   }, [])
 

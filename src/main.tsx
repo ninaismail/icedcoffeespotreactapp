@@ -4,11 +4,12 @@ import App from "./App";
 import './index.css'
 import { AuthContextProvider } from "./context/AuthContext";
 
-const user = JSON.stringify(localStorage.getItem('user_id'))
+const userString = localStorage.getItem('user');
+const user = userString !== null && JSON.parse(userString);
 
 ReactDOM.render(
   <AuthContextProvider>
-  <CartProvider id={user}>
+  <CartProvider id={user.user_id}>
     <App/>
     </CartProvider>
   </AuthContextProvider>,

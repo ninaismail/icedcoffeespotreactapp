@@ -1,14 +1,23 @@
 import { useAuthContext } from './useAuthContext'
-
+type FormState = {
+  data: {
+    [key: string]: {
+      value: string | [] | number;
+      isValid: boolean | null;
+      validationMessage: string;
+      required: boolean;
+      ref: any;
+    };
+  };
+  isValid: boolean;
+};
 export const useLogin = () => {
   const {dispatch}  = useAuthContext()
 
-    const signin = (id: string, token: string, name: string) => {
-      localStorage.setItem('user', token)
-      localStorage.setItem('user_name', JSON.stringify(name))
-      localStorage.setItem('user_id', JSON.stringify(id))
-      dispatch({ type: 'LOGIN', payload: token })
-    window.location.pathname = '/'
+    const signin = (data: FormState) => {
+      localStorage.setItem('user', JSON.stringify(data))
+      dispatch({ type: 'LOGIN', payload: data })
+      window.location.pathname = '/'
   }
 
   return { signin }

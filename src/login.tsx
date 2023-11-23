@@ -158,7 +158,7 @@ export default function Login() {
         .then(function (response) {
           console.log('success', response);
           // update the auth context
-          signin(response.data._id,response.data.accessToken,response.data.name)
+          signin(response.data)
         }).catch((error) => {
           console.log('error', error);
       });
