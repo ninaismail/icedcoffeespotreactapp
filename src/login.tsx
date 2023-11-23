@@ -198,7 +198,7 @@ export default function Login() {
       />
       {formState.data.password.isValid === false && <p className="mb-2 text-[12px] text-red-500">{formState.data.password.validationMessage}</p>}
       <div className="flex justify-between items-center gap-2 mt-5">
-        <button className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Sign In</button>
+        <button className="w-1/3 bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Sign In</button>
         <p>Don't have an account yet? <NavLink to="/register" className="text-[#E97451] hover:brightness-125 text-sm font-bold py-2 px-4 rounded">Register</NavLink></p>
       </div>
     </form>

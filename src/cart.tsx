@@ -9,8 +9,12 @@ const CartPage = () => {
         updateItemQuantity,
         removeItem,
   } = useCart();
-  
+  // useEffect(() => {
+  //   localStorage.setItem("cartItems", JSON.stringify(items));
+  // }, [items]);
+
   console.log("2222",items)
+  // console.log("3333",localStorage)
   if (isEmpty) return <p>Your cart is empty</p>;
     return (
     <div className="w-4/5 mx-auto py-6 px-4 sm:px-6">
