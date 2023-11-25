@@ -204,7 +204,7 @@ export default function Login() {
         <p>Don't have an account yet? <NavLink to="/register" className="text-[#E97451] hover:brightness-125 text-sm font-bold py-2 px-4 rounded">Register</NavLink></p>
       </div>
       <p className='text-center'>------- Or Use -------</p>
-      <NavLink to='http://localhost:3000/auth/google' onClick={(E)=>GoogleSignIn(E)} className="flex items-center mx-auto my-2 bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+      <NavLink to='http://localhost:3000/auth/google' className="flex items-center mx-auto my-2 bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
       <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 0 48 48" version="1.1">
           <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
               <g id="Color-" transform="translate(-401.000000, -860.000000)">
