@@ -9,7 +9,7 @@ const user = userString !== null && JSON.parse(userString);
 
 ReactDOM.render(
   <AuthContextProvider>
-  <CartProvider id={user._id}>
+  <CartProvider id={user?._id || user?.user?.id}>
     <App/>
     </CartProvider>
   </AuthContextProvider>,
