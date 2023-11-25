@@ -1,6 +1,4 @@
 import { createContext, useReducer, useEffect, ReactNode } from 'react'
-import Cookie from 'cookie-universal';
-
 type FormState = {
   user: string
 };
