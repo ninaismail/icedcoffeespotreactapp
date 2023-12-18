@@ -1,4 +1,4 @@
-import { useRef,useReducer } from 'react'
+import { useRef,useReducer, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { useLogin } from "./hooks/useLogin"
 type FormState = {
@@ -17,12 +17,8 @@ const ACTIONS = {
   submit:"form_submit",
   required:"required_input",
   focused: "input_focused",
-  email: "EMAIL_VALIDATIION",
-  password:"STRONG_PASSWORD"
 }
 const ERRORS = {
-  emailValidation: 'Invalid email format, your email should include an "@"',
-  passwordValidation: 'Weak password, your password should have 8 digits or more',
   isRequired: 'This field is required'
 };
 
@@ -53,27 +49,27 @@ function formReducer(formState: FormState, action: any): FormState {
           validationMessage: ERRORS.isRequired,
         };
 
-        switch (action.field) {
-          case 'password':
-            if (action.value.length > 0) {
-              updatedData[action.field] = {
-                ...updatedData[action.field],
-                isValid: action.value.length >= 8,
-                validationMessage: ERRORS.passwordValidation,
-              };
-            }
-            break;
+        // switch (action.field) {
+        //   case 'password':
+        //     if (action.value.length > 0) {
+        //       updatedData[action.field] = {
+        //         ...updatedData[action.field],
+        //         isValid: action.value.length >= 8,
+        //         validationMessage: ERRORS.passwordValidation,
+        //       };
+        //     }
+        //     break;
 
-          case 'email':
-            if (action.value.length > 0) {
-              updatedData[action.field] = {
-                ...updatedData[action.field],
-                isValid: action.value.includes("@"),
-                validationMessage: ERRORS.emailValidation,
-              };
-            }
-            break;
-        }
+        //   case 'email':
+        //     if (action.value.length > 0) {
+        //       updatedData[action.field] = {
+        //         ...updatedData[action.field],
+        //         isValid: action.value.includes("@"),
+        //         validationMessage: ERRORS.emailValidation,
+        //       };
+        //     }
+        //     break;
+        // }
       }
       break;
 
@@ -98,7 +94,7 @@ function formReducer(formState: FormState, action: any): FormState {
 
 export default function Login() {
   const { signin } = useLogin();
-
+  const [notFound, setNotFound] = useState("")
   const initialData: FormState = {
   data: {
     email: {
@@ -160,7 +156,8 @@ export default function Login() {
           // update the auth context
           signin(response.data)
         }).catch((error) => {
-          console.log('error', error);
+          console.log('error', error.response.data);
+          setNotFound(error.response.data)
       });
   }
   const GoogleSignIn = async (e:any) => {
@@ -183,7 +180,6 @@ export default function Login() {
           required={formState.data.email.required}
           className="w-full h-14 px-4 placeholder:text-gray-400 placeholder:text-sm text-gray-600 border-2 border-gray-200 hover:border-[#E97451] outline-none rounded-lg"
       />
-      {formState.data.email.isValid === false && <p className="mb-2 text-[12px] text-red-500">{formState.data.email.validationMessage}</p>}
       <label htmlFor="password">Password:</label>
       <input 
         id="password"
@@ -197,7 +193,7 @@ export default function Login() {
         required={formState.data.password.required}
         className="w-full h-14 px-4 placeholder:text-gray-400 placeholder:text-sm text-gray-600 border-2 border-gray-200 hover:border-[#E97451] outline-none rounded-lg"
       />
-      {formState.data.password.isValid === false && <p className="mb-2 text-[12px] text-red-500">{formState.data.password.validationMessage}</p>}
+      {notFound != "" && <p className="mt-2 text-[12px] text-red-500">{notFound}</p>}
       <div className="flex justify-between items-center gap-2 my-5">
         <button className="w-1/3 bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Sign In</button>
         <p>Don't have an account yet? <NavLink to="/register" className="text-[#E97451] hover:brightness-125 text-sm font-bold py-2 px-4 rounded">Register</NavLink></p>
