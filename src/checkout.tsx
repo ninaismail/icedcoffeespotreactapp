@@ -227,7 +227,7 @@ function CheckoutPage() {
       })
         .then(function (response) {
           console.log('success', response);
-          setOrderResponse("Thank you for ordering from our shop, we'll get back to you in 24 hrs.")
+          setOrderResponse("Thank you for ordering from our cafe, your order will arrive in 30mins.")
         }).catch((error) => {
           console.log('error', error);
           setOrderResponse("Oops! Something went wrong...")
