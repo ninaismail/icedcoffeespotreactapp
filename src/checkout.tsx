@@ -1,5 +1,5 @@
 import { useCart } from "react-use-cart"
-import { useRef,useReducer } from 'react'
+import { useRef,useReducer, useState } from 'react'
 import { useAuthContext } from "./hooks/useAuthContext"
 
 type FormState = {
@@ -105,6 +105,7 @@ function formReducer(formState: FormState, action: any): FormState {
 
 function CheckoutPage() {
   const {user} = useAuthContext()
+  const [orderResponse, setOrderResponse] = useState("")
 
   const {
     cartTotal,
@@ -226,8 +227,10 @@ function CheckoutPage() {
       })
         .then(function (response) {
           console.log('success', response);
+          setOrderResponse("Thank you for ordering from our shop, we'll get back to you in 24 hrs.")
         }).catch((error) => {
           console.log('error', error);
+          setOrderResponse("Oops! Something went wrong...")
       });
   };
 
@@ -363,6 +366,7 @@ function CheckoutPage() {
           <button className="bg-white hover:brightness-125 text-[#E97451] border border-[#E97451] text-sm font-bold py-2 px-4 rounded" onClick={(e)=>clearInputs(e)}>Cancel</button>
           <button className="bg-[#E97451] hover:brightness-125 text-white text-sm font-bold py-2 px-4 rounded">Place Order</button>
         </div>  
+        {orderResponse != "" && <p className={`mt-2 text-lg ${orderResponse === "Oops! Something went wrong..." ? "text-red-500" : "text-green-500"}`}>{orderResponse}</p>}
       </div>
     </div>
   </form>
